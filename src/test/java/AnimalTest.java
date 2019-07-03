@@ -27,9 +27,19 @@ public class AnimalTest {
     public void save_insertsObjectsIntoDatabase_Animal(){
         Animal  testAnimal = new Animal("Lion",1);
         testAnimal.save();
-        assertEquals(Animal.all().get(0).equals(testAnimal));
+        assertTrue(Animal.all().get(0).equals(testAnimal));
     }
 
+    @Test
+    public void all_returnsAllInstancesOfAnimal_true(){
+        Animal  firstAnimal = new Animal("Lion",1);
+        Animal  secondAnimal = new Animal("Rabbit",2);
+        firstAnimal.save();
+        secondAnimal.save();
+        assertEquals(true,Animal.all().get(0).equals(firstAnimal));
+        assertEquals(true,Animal.all().get(1).equals(secondAnimal));
+
+    }
 
 
 }

@@ -1,4 +1,7 @@
+
+import java.util.List;
 import java.util.Objects;
+import org.sql2o.*;
 
 public class Animal {
     private String name;
@@ -7,6 +10,7 @@ public class Animal {
 
     public Animal(String name, int id) {
         this.name = name;
+        this.id = id;
     }
 
     public String getName() {
@@ -25,5 +29,20 @@ public class Animal {
     @Override
     public int hashCode() {
         return Objects.hash(name, id);
+    }
+    public void save(){
+        try(Connection con=DB.sql2o.open()){
+            String sql="INSERT INTO animals(name) VALUES(:name)";
+            this.id = (int) con.createQuery(sql, true)
+                    .addParameter("name",this.name)
+                    .executeUpdate()
+            .getKey();
+        }
+    }
+    public  static List<Animal> all(){
+        String sql="SELECT *FROM animals";
+        try(Connection con=DB.sql2o.open()){
+            return con.createQuery(sql).executeAndFetch(Animal.class);
+        }
     }
 }
