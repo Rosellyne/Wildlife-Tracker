@@ -2,7 +2,12 @@ import org.sql2o.*;
 
 import java.util.List;
 
-public class NonEndangeredAnimal {
+public class NonEndangeredAnimal extends Animal{
+
+    public NonEndangeredAnimal(String name,int id){
+        this.name=name;
+        this.id=id;
+    }
     public  static List<NonEndangeredAnimal> all(){
         String sql="SELECT *FROM animals";
         try(Connection con=DB.sql2o.open()){

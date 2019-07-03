@@ -2,7 +2,23 @@ import org.sql2o.*;
 
 import java.util.List;
 
-public class EndangeredAnimal {
+public class EndangeredAnimal extends Animal {
+    public String age;
+    public String health;
+
+    public EndangeredAnimal(String name,int id){
+        this.name =name;
+        this.id =id;
+
+    }
+    public static  final String MAX_HEALTH_LEVEL = "healthy";
+    public static  final String MID_HEALTH_LEVEL = "okay";
+    public static  final String MIN_HEALTH_LEVEL = "ill";
+
+    public static  final String MAX_AGE_LEVEL = "adult";
+    public static  final String MID_AGE_LEVEL = "young";
+    public static  final String MIN_AGE_LEVEL = "newborn";
+
     public  static List<EndangeredAnimal> all(){
         String sql="SELECT *FROM animals";
         try(Connection con=DB.sql2o.open()){

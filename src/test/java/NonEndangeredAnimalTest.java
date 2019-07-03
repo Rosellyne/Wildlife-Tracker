@@ -21,7 +21,7 @@ public class NonEndangeredAnimalTest {
     @Test
     public void returnTrueIfNameAndIdAreSame_true(){
         NonEndangeredAnimal  testNonEndangeredAnimal = new NonEndangeredAnimal("Lion",1);
-        NonEndangeredAnimal  anotherNonEndangeredAnimal = new EndangeredAnimal("Lion",1);
+        NonEndangeredAnimal  anotherNonEndangeredAnimal = new NonEndangeredAnimal("Lion",1);
         assertEquals(true,testNonEndangeredAnimal.equals(anotherNonEndangeredAnimal));
 
     }
@@ -29,10 +29,10 @@ public class NonEndangeredAnimalTest {
     public void save_insertsNonEndangeredAnimalToDatabase_Animal() {
         NonEndangeredAnimal testNonEndangeredAnimal = new NonEndangeredAnimal("Lion", 1);
         testNonEndangeredAnimal.save();
-        assertTrue(NonEndangeredAnimal.all().get().eqquals(testNonEndangeredAnimal));
+        assertTrue(NonEndangeredAnimal.all().get(0).equals(testNonEndangeredAnimal));
     }
     @Test
-    public void all_returnsAllInstancesOfNonEndageredAnimal_true(){
+    public void all_returnsAllInstancesOfNonEndangeredAnimal_true(){
         NonEndangeredAnimal  firstNonEndangeredAnimal = new NonEndangeredAnimal("Lion",1);
         firstNonEndangeredAnimal.save();
         NonEndangeredAnimal  secondNonEndangeredAnimal = new NonEndangeredAnimal("Rabbit",2);
