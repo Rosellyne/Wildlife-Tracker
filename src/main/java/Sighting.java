@@ -1,4 +1,7 @@
 import org.sql2o.*;
+
+import java.sql.Date;
+import java.sql.ResultSet;
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.Objects;
@@ -34,6 +37,8 @@ public class Sighting {
         this.name=name;
         this.location=location;
         this.animalId=animalId;
+
+
     }
 
     @Override
@@ -53,12 +58,14 @@ public class Sighting {
         return Objects.hash(name, id, location, animalId, timestamp);
     }
     public static List<Sighting>all(){
-        String sql ="SELECT *FROM sightings;";
+        String sql ="SELECT * FROM sightings";
+        String now="SELECT timestamp FROM sightings";
         try(Connection con=DB.sql2o.open()) {
             return con.createQuery(sql).executeAndFetch(Sighting.class);
-
         }
     }
+
+
     public static Sighting find(int id){
         String sql ="SELECT*FROM sightings WHERE id=:id";
         try(Connection con=DB.sql2o.open()){
@@ -71,13 +78,15 @@ public class Sighting {
     }
     public void save(){
         try(Connection con =DB.sql2o.open()){
-            String sql="INSERT INTO sightings(name.location,animalId,timestamp)VALUES(:name,:location,:animalId,now();)";
+            String sql="INSERT INTO sightings(name,location,animalId,timestamp)VALUES(:name,:location,:animalId,now())";
+
             this.id =(int)con.createQuery(sql,true)
                     .addParameter("name",this.name)
                     .addParameter("location",this.location)
                     .addParameter("animalId",this.animalId)
                     .executeUpdate()
                     .getKey();
+            System.out.println(this.id);
         }
     }
     public void delete(){

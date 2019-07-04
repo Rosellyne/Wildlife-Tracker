@@ -6,9 +6,11 @@ public class EndangeredAnimal extends Animal {
     public String age;
     public String health;
 
-    public EndangeredAnimal(String name,int id){
+    public EndangeredAnimal(String name,int id,String age,String health){
         this.name =name;
         this.id =id;
+        this.age =age;
+        this.health=health;
 
     }
     public static  final String MAX_HEALTH_LEVEL = "healthy";
