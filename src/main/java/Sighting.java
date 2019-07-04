@@ -6,7 +6,7 @@ import java.sql.Timestamp;
 import java.util.List;
 import java.util.Objects;
 
-public class Sighting {
+public class Sighting implements DatabaseManagement{
     public int getId() {
         return id;
     }
@@ -76,6 +76,7 @@ public class Sighting {
 
         }
     }
+
     public void save(){
         try(Connection con =DB.sql2o.open()){
             String sql="INSERT INTO sightings(name,location,animalId,timestamp)VALUES(:name,:location,:animalId,now())";
@@ -89,6 +90,7 @@ public class Sighting {
             System.out.println(this.id);
         }
     }
+    @Override
     public void delete(){
         try(Connection con=DB.sql2o.open()){
             String sql="DELETE FROM sightings WHERE id=:id";

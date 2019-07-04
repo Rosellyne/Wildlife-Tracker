@@ -6,7 +6,15 @@ public class EndangeredAnimal extends Animal {
     public String age;
     public String health;
 
-    public EndangeredAnimal(String name,int id,String age,String health){
+    public String getAge() {
+        return age;
+    }
+
+    public String getHealth() {
+        return health;
+    }
+
+    public EndangeredAnimal(String name, int id, String age, String health){
         this.name =name;
         this.id =id;
         this.age =age;
