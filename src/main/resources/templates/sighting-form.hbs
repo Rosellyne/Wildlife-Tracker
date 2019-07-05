@@ -1,0 +1,38 @@
+{{#partial "content"}}
+    <div class="form1">
+        <form action ="/sighting/new" method="post">
+            <h1>Post a Sighted Animal:</h1>
+            <label for ="name">Enter Your Name:</label>
+            <input type="text" name="name" id="name" class="form-control" required="required">
+            <label for ="name">Location of Sighting</label>
+            <select>
+                <option value="Zone 1">Zone 1</option>
+                <option value="Zone 2">Zone 2</option>
+                <option value="Zone3">Zone3</option>
+            </select>
+            <label for ="name">Enter Animal Name:</label>
+            <input type="text" name="animalName" id="animalName" class="form-control" required="required">
+
+            <label for ="name">Animal,s Health</label>
+            <select>
+                <option value="healthy">Healthy</option>
+                <option value="okay">Okay</option>
+                <option value="ill">Ill</option>
+            </select>
+            <label for ="name">Animal's Age</label>
+            <select>
+                <option value="adult">Adult</option>
+                <option value="young">Young</option>
+                <option value="newborn">Newborn</option>
+            </select>
+            <label for ="name">Animal species</label>
+            <select>
+                <option value="endangered">Endangered</option>
+                <option value="non-endangered">Non-endangered</option>
+
+            </select>
+            <button type ="submit" class="btn">Add Animal</button>
+        </form>
+    </div>
+{{/partial}}
+{{> layout.hbs}}
