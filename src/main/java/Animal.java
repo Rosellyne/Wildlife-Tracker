@@ -1,5 +1,4 @@
 
-import java.util.List;
 import java.util.Objects;
 import org.sql2o.*;
 
@@ -12,10 +11,7 @@ public  abstract class Animal {
         return id;
     }
 
-//    public Animal(String name, int id) {
-//        this.name = name;
-//        this.id = id;
-//    }
+
 
     public String getName() {
         return name;

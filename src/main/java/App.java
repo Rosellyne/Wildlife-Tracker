@@ -26,41 +26,34 @@ public class App {
 
         post("/sighting/new",(request,response)->{
             Map<String, Object> model = new HashMap<>();
-            String sightingLocation=request.queryParams("sightingLocation");
-            String animalAge = request.queryParams(" animalAge");
+            String location=request.queryParams("location");
+            String age = request.queryParams(" age");
             String animalName = request.queryParams("animalName");
-            String animalHealth = request.queryParams("animalHealth");
-            String userName = request.queryParams("userName");
+            String health = request.queryParams("health");
+            String species = request.queryParams("species");
+            String ranger = request.queryParams("ranger");
+            Sighting newSighting = new Sighting(animalName,location,1);
+            newSighting.save();
             List<Sighting> allSightings = Sighting.all();
             List<EndangeredAnimal> allAnimal= EndangeredAnimal.all();
             List<NonEndangeredAnimal> animal=NonEndangeredAnimal.all();
-            model.put("sightings",allSightings);
+            model.put("sightings",Sighting.all());
             model.put("animal",allAnimal);
             model.put("animal",animal);
+            model.put("animal",animalName);
             return new ModelAndView(model,"sighting.hbs");
         },new HandlebarsTemplateEngine());
 
 
 
-        get ("/animal",(request, response) -> {
+
+        get ("/sighting/new",(request, response) -> {
             Map<String,Object>model =new HashMap<>();
-            return new ModelAndView(model,"animal-form.hbs");
-        },new HandlebarsTemplateEngine());
-
-
-        post("/animal/new",(request,response)->{
-            Map<String, Object> model = new HashMap<>();
-            boolean endangered = request.queryParams("endangered")!=null;
-            if (endangered) {
-                String name = request.queryParams("name");
-//                EndangeredAnimal endangeredAnimal = new EndangeredAnimal;
-//                endangeredAnimal.save();
-            }else{
-                String name = request.queryParams("name");
-
-            }
-
+            model.put("sightings",Sighting.all());
+            model.put("animal",EndangeredAnimal.all());
+            model.put("animals",NonEndangeredAnimal.all());
             return new ModelAndView(model,"sighting.hbs");
         },new HandlebarsTemplateEngine());
+
     }
 }
